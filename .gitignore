@@ -7,3 +7,8 @@ Digraph*
 .vscode
 shapes_uploaded.json
 .snakemake
+.env
+dw_uploaded.json
+
+
+viz_uploaded.json

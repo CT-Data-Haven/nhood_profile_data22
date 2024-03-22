@@ -49,7 +49,9 @@ This uses snakemake to build. Rules available are:
     make_shapes
     notes
     readme
+    sync_to_dw
     upload_shapes
+    upload_viz_data
     viz_data
 
 Build process is as follows:
