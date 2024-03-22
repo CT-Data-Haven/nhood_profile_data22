@@ -5,5 +5,5 @@
 .DS_Store
 Digraph*
 .vscode
-.shapes_uploaded
+shapes_uploaded.json
 .snakemake

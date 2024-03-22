@@ -88,7 +88,7 @@ rule upload_shapes:
     input:
         rules.make_shapes.output,
     output:
-        touch('.shapes_uploaded')
+        'shapes_uploaded.json'
     shell:
         'bash ./scripts/05_upload_shapes_release.sh {input}'
 
@@ -105,9 +105,20 @@ rule clean:
             _utils/*.rds
         '''
 
+rule readme:
+    input:
+        readme = 'README.qmd',
+        snakefile = 'Snakefile',
+    output:
+        md = 'README.md',
+        dag = 'dag.png',
+    shell:
+        'quarto render {input.readme}'
+
 rule all:
     default_target: True
     input:
+        rules.readme.output.md,
         rules.viz_data.output,
         rules.distro.output,
         rules.upload_shapes.output
