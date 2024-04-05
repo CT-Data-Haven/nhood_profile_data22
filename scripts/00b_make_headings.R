@@ -25,7 +25,8 @@ headings <- hdr_paths |>
       fct_recode(health_risk_behaviors = "behaviors", health_outcomes = "outcomes", life_expectancy = "expectancy"),
     format = case_when(
       topic == "life_expectancy" ~ ".1f",
-      type == "t"                ~ ".0%",
+      type == "t"                ~ ",",
+      type == "m"                ~ ".0%",
       TRUE                       ~ ","
     ),
     topic_display = topic |>
