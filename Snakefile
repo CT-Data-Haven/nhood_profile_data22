@@ -56,6 +56,7 @@ rule combine_datasets:
         rules.download_data.output.acs,
         rules.download_data.output.cdc,
         rules.notes.output.geos,
+        'scripts/01_join_acs_health.R',
     params:
         acs_year = acs_year,
         cdc_year = cdc_year,
