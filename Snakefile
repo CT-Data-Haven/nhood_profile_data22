@@ -21,6 +21,7 @@ rule download_data:
         cdc = f'input_data/cdc_health_all_lvls_nhood_{cdc_year}.rds',
         acs_head = '_utils/acs_indicator_headings.txt',
         cdc_head = '_utils/cdc_indicators.txt',
+        flag = '.meta_downloaded.json',
     params:
         acs_year = acs_year,
         cdc_year = cdc_year,
@@ -65,7 +66,7 @@ rule combine_datasets:
 
 rule distro:
     input:
-        rules.headings.output,
+        rules.headings.output.headings,
         rules.combine_datasets.output.comb,
     params:
         acs_year = acs_year,
@@ -96,7 +97,7 @@ rule upload_shapes:
     input:
         rules.make_shapes.output,
     output:
-        'shapes_uploaded.json'
+        '.shapes_uploaded.json'
     shell:
         'bash ./scripts/05_upload_shapes_release.sh {input}'
 
@@ -104,10 +105,10 @@ rule upload_shapes:
 rule upload_viz_data:
     input:
         data = rules.viz_data.output.viz,
-        headings = rules.headings.output,
+        headings = rules.headings.output.headings,
         notes = rules.notes.output.notes,
     output:
-        'viz_uploaded.json',
+        '.viz_uploaded.json',
     shell:
         'bash ./scripts/07_upload_data_release.sh {input.data} {input.headings} {input.notes}'
 
@@ -116,7 +117,7 @@ rule sync_to_dw:
     input:
         rules.distro.output,
     output:
-        'dw_uploaded.json',
+        '.dw_uploaded.json',
     params:
         key = os.environ['DW_AUTH_TOKEN'],
         year = acs_year,
@@ -147,7 +148,8 @@ rule all:
         rules.distro.output,
         rules.upload_shapes.output,
         rules.upload_viz_data.output,
-        rules.sync_to_dw.output
+        rules.sync_to_dw.output,
+        rules.download_data.output.flag,
 
 # ---- CLEANUP ----
 rule clean:

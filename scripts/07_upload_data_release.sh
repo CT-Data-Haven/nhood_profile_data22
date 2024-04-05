@@ -14,4 +14,4 @@ gh release upload viz \
 
 gh release view viz \
   --json id,tagName,assets,createdAt,url > \
-  viz_uploaded.json
+  .viz_uploaded.json

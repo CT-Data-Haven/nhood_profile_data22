@@ -47,7 +47,7 @@ curl --request GET \
   --url "$baseurl" \
   --header "accept: application/json" \
   --header "authorization: Bearer $key" > \
-  dw_uploaded.json
+  .dw_uploaded.json
 
 # api takes files in form '
 # {

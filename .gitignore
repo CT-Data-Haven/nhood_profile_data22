@@ -5,10 +5,7 @@
 .DS_Store
 Digraph*
 .vscode
-shapes_uploaded.json
 .snakemake
 .env
-dw_uploaded.json
-
-
-viz_uploaded.json
+*_uploaded.json
+*_downloaded.json

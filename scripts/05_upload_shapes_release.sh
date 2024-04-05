@@ -17,4 +17,4 @@ gh release upload geos \
 gh release view geos \
   --repo "CT-Data-Haven/scratchpad" \
   --json id,tagName,assets,createdAt,url > \
-  shapes_uploaded.json
+  .shapes_uploaded.json

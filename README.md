@@ -18,7 +18,7 @@ assets from each tag are used, but the files in those releases are:
 | 2022acs    | [dist](https://github.com/CT-Data-Haven/2022acs/releases/tag/dist)    | 2024-03-21T20:21:54Z | acs_nhoods_by_city_2022.rds, acs_town_basic_profile_2022.rds          |
 | cdc_aggs   | [v2023](https://github.com/CT-Data-Haven/cdc_aggs/releases/tag/v2023) | 2024-03-21T19:34:30Z | cdc_health_all_lvls_nhood_2023.rds, cdc_health_all_lvls_wide_2023.csv |
 | scratchpad | [meta](https://github.com/CT-Data-Haven/scratchpad/releases/tag/meta) | 2024-03-21T20:35:46Z | acs_headings_extra.txt, acs_indicator_headings.txt                    |
-| scratchpad | [meta](https://github.com/CT-Data-Haven/scratchpad/releases/tag/meta) | 2024-03-22T02:16:38Z | cdc_indicators.txt                                                    |
+| scratchpad | [meta](https://github.com/CT-Data-Haven/scratchpad/releases/tag/meta) | 2024-04-05T18:22:05Z | cdc_indicators.txt                                                    |
 
 This also creates its own release back into the scratchpad repo with
 topojson files of neighborhoods for each city to use for online
