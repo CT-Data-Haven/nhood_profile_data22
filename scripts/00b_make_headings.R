@@ -24,10 +24,12 @@ headings <- hdr_paths |>
     topic = as_factor(topic) |>
       fct_recode(health_risk_behaviors = "behaviors", health_outcomes = "outcomes", life_expectancy = "expectancy"),
     format = case_when(
-      grepl("life_exp", indicator) ~ ".1f",
-      type == "t"                  ~ ",",
-      type == "m"                  ~ ".0%",
-      TRUE                         ~ ","
+      grepl("life_exp", indicator)   ~ ".1f",
+      type == "t"                    ~ ",",
+      # type == "m"                  ~ ".0%",
+      type == "m" & dataset == "cdc" ~ ".1%",
+      type == "m"                    ~ ".0%",
+      TRUE                           ~ ","
     ),
     topic_display = topic |>
       fct_relabel(camiller::clean_titles) |>
