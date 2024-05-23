@@ -9,22 +9,21 @@ shps <- tibble::lst(cwi::bridgeport_sf, cwi::hartford_sf, cwi::new_haven_sf, cwi
   set_names(stringr::str_extract, "([a-z_]+)(?=_sf)") |>
   map(st_transform, 4326) |>
   map(st_cast, "MULTIPOLYGON") |>
-  imap(function(shp, city) mutate(shp, name = ifelse(name %in% dupe_nhoods, paste(name, stringr::str_to_title(city)), as.character(name)))) |>
-  map(function(shp) mutate(shp, name = stringr::str_replace(name, "\\bOf\\b", "of") %>% stringr::str_replace("New_haven", "New Haven")))
-
-# topojson_write is deprecated
-# iwalk(function(shp, city) {
-# geojsonio::topojson_write(shp, object_name = "city", file = file.path("to_viz", "cities", paste(city, "topo.json", sep = "_")))
-# })
+  imap(function(shp, city) {
+    mutate(shp, name = ifelse(name %in% dupe_nhoods,
+      paste(name, snakecase::to_title_case(city)),
+      as.character(name)
+    ))
+  })
 
 shps |>
-  imap(function(shp, city) {
-    geojsonio::geojson_write(shp,
-      object_name = "city",
-      file = file.path("to_viz", "cities", paste(city, "topo.json", sep = "_"))
+  imap(function(df, city) {
+    id <- paste(city, "topo", sep = "_")
+    fn <- xfun::with_ext(id, "json")
+    geojsonio::topojson_write(df,
+      geometry = "polygon",
+      file = file.path("to_viz", "cities", fn),
+      overwrite = TRUE,
+      object_name = id
     )
-  }) |>
-  map(pluck, "path") |>
-  walk(function(pth) {
-    system(stringr::str_glue("mapshaper {pth} -clean -filter-slivers -o force format=topojson {pth}"))
   })

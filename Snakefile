@@ -94,13 +94,13 @@ rule make_shapes:
         'scripts/04_make_shapefiles.R'
 
 
-rule upload_shapes:
-    input:
-        rules.make_shapes.output,
-    output:
-        '.shapes_uploaded.json'
-    shell:
-        'bash ./scripts/05_upload_shapes_release.sh {input}'
+# rule upload_shapes:
+    # input:
+        # rules.make_shapes.output,
+    # output:
+        # '.shapes_uploaded.json'
+    # shell:
+        # 'bash ./scripts/05_upload_shapes_release.sh {input}'
 
 
 rule upload_viz_data:
@@ -108,10 +108,11 @@ rule upload_viz_data:
         data = rules.viz_data.output.viz,
         headings = rules.headings.output.headings,
         notes = rules.notes.output.notes,
+        shapes = rules.make_shapes.output,
     output:
         '.viz_uploaded.json',
     shell:
-        'bash ./scripts/07_upload_data_release.sh {input.data} {input.headings} {input.notes}'
+        'bash ./scripts/07_upload_data_release.sh {input}'
 
 
 rule sync_to_dw:
@@ -147,7 +148,7 @@ rule all:
         rules.readme.output.md,
         rules.viz_data.output,
         rules.distro.output,
-        rules.upload_shapes.output,
+        # rules.upload_shapes.output,
         rules.upload_viz_data.output,
         rules.sync_to_dw.output,
         rules.download_data.output.flag,

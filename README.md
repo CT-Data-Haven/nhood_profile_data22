@@ -13,30 +13,14 @@ Datasets prepped for download from other repos are in their respective
 tagged releases to ensure their stability and reproduceability. Not all
 assets from each tag are used, but the files in those releases are:
 
-| repo       | tag                                                                   | updated              | assets                                                                |
-|:-----------|:----------------------------------------------------------------------|:---------------------|:----------------------------------------------------------------------|
-| 2022acs    | [dist](https://github.com/CT-Data-Haven/2022acs/releases/tag/dist)    | 2024-03-21T20:21:54Z | acs_nhoods_by_city_2022.rds, acs_town_basic_profile_2022.rds          |
-| cdc_aggs   | [v2023](https://github.com/CT-Data-Haven/cdc_aggs/releases/tag/v2023) | 2024-03-21T19:34:30Z | cdc_health_all_lvls_nhood_2023.rds, cdc_health_all_lvls_wide_2023.csv |
-| scratchpad | [meta](https://github.com/CT-Data-Haven/scratchpad/releases/tag/meta) | 2024-03-21T20:35:46Z | acs_headings_extra.txt, acs_indicator_headings.txt                    |
-| scratchpad | [meta](https://github.com/CT-Data-Haven/scratchpad/releases/tag/meta) | 2024-04-05T18:22:05Z | cdc_indicators.txt                                                    |
-
-This also creates its own release back into the scratchpad repo with
-topojson files of neighborhoods for each city to use for online
-visualization:
-
-    title:  Geographies
-    tag:    geos
-    draft:  false
-    prerelease: false
-    author: camille-s
-    created:    2022-05-11T20:17:57Z
-    published:  2024-03-21T20:35:19Z
-    url:    https://github.com/CT-Data-Haven/scratchpad/releases/tag/geos
-    asset:  bridgeport_topo.json
-    asset:  hartford_topo.json
-    asset:  new_haven_topo.json
-    asset:  stamford_topo.json
-    --
+| repo       | tag                                                                   | updated              | assets                                                       |
+|:-----------|:----------------------------------------------------------------------|:---------------------|:-------------------------------------------------------------|
+| 2022acs    | [dist](https://github.com/CT-Data-Haven/2022acs/releases/tag/dist)    | 2024-04-29T21:13:52Z | acs_nhoods_by_city_2022.rds, acs_town_basic_profile_2022.rds |
+| cdc_aggs   | [v2023](https://github.com/CT-Data-Haven/cdc_aggs/releases/tag/v2023) | 2024-05-23T15:47:49Z | cdc_health_all_lvls_nhood_2023.rds                           |
+| cdc_aggs   | [v2023](https://github.com/CT-Data-Haven/cdc_aggs/releases/tag/v2023) | 2024-05-23T15:47:56Z | cdc_health_all_lvls_wide_2023.csv                            |
+| scratchpad | [meta](https://github.com/CT-Data-Haven/scratchpad/releases/tag/meta) | 2024-03-21T20:35:46Z | acs_headings_extra.txt, acs_indicator_headings.txt           |
+| scratchpad | [meta](https://github.com/CT-Data-Haven/scratchpad/releases/tag/meta) | 2024-04-05T18:22:05Z | cdc_indicators.txt                                           |
+| scratchpad | [meta](https://github.com/CT-Data-Haven/scratchpad/releases/tag/meta) | 2024-05-11T01:55:57Z | cws_indicator_headings.txt                                   |
 
 This uses snakemake to build. Rules available are:
 
@@ -50,7 +34,6 @@ This uses snakemake to build. Rules available are:
     notes
     readme
     sync_to_dw
-    upload_shapes
     upload_viz_data
     viz_data
 

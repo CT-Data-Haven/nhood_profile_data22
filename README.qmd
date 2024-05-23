@@ -37,12 +37,6 @@ repos |>
   knitr::kable()
 ```
 
-This also creates its own release back into the scratchpad repo with topojson files of neighborhoods for each city to use for online visualization:
-
-```{bash}
-gh release view geos --repo CT-Data-Haven/scratchpad
-```
-
 This uses snakemake to build. Rules available are:
 
 ```{bash}
